@@ -310,7 +310,7 @@ class Deployer {
         // Get final build status, Fail if build has failed
         .then(() => this.checkBuildStatus())
         // Finally, clear bundle tmp directory
-        .then(() => this.clearBundleDir());
+        .finally(() => this.clearBundleDir());
     }
 
     /**
