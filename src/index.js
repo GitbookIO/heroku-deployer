@@ -244,7 +244,7 @@ class Deployer {
                     resolve();
                 })
                 .on('data', (data) => {
-                    process.stdout.write(data.toString('utf-8'));
+                    process.stdout.write(chalk.blue(data.toString('utf-8')));
                 });
             });
         });
