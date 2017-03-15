@@ -371,10 +371,9 @@ class Deployer {
 
             console.log('');
             console.log('Pushing configuration...');
+            const body = diff;
             return this.client.patch(`/apps/${this.app}/config-vars`, {
-                body: {
-                    diff
-                }
+                body
             });
         });
     }
