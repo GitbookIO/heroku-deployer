@@ -205,7 +205,7 @@ class Deployer {
             cwd: this.srcDir.cwd()
         })
         .spread((stdout) => {
-            this.config.buildVersion = stdout[0].toString().trim();
+            this.config.buildVersion = stdout.toString().trim();
         });
     }
 
