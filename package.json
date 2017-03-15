@@ -5,7 +5,7 @@
   "description": "Node.js module and CLI that makes deploying to Heroku a child's play",
   "main": "lib/index.js",
   "bin": {
-    "heroku-deployer": "bin/heroku-deployer.js"
+    "heroku-deployer": "lib/cli.js"
   },
   "scripts": {
     "prepublish": "babel --out-dir ./lib ./src",

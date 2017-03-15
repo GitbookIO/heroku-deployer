@@ -1,9 +1,10 @@
 #! /usr/bin/env node
+/* eslint-disable no-console */
 
-var program = require('commander');
-var chalk = require('chalk');
-var Deployer = require('../lib');
-var pkg = require('../package.json');
+const program = require('commander');
+const chalk = require('chalk');
+const Deployer = require('.');
+const pkg = require('../package.json');
 
 // Describe program options
 program
@@ -19,7 +20,7 @@ program
 program.parse(process.argv);
 
 // Construct converters options
-var opts = {};
+const opts = {};
 if (program.args[0]) {
     opts.configFile = program.args[0];
 }
@@ -34,7 +35,7 @@ if (program.srcDir) {
 }
 
 // Get a Deployer
-var deployer;
+let deployer;
 try {
     deployer = new Deployer(opts);
 }
