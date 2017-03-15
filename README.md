@@ -138,58 +138,58 @@ deployer.deploy()
 
 All instance functions return [bluebird](https://github.com/petkaantonov/bluebird/) Promises.
 
-**deployer.deploy()**
+###### deployer.deploy()
 
 Deploy the whole application to Heroku and updates its configuration using the `env` parameter.
 Be sure to always pass your whole environment variables list since all missing values will be unset on Heroku.
 
-**deployer.deployApp()**
+###### deployer.deployApp()
 
 Deploy the whole application to Heroku without updating its configuration.
 
-**deployer.deployConfig()**
+###### deployer.deployConfig()
 
 Update the application's configuration using the `env` parameter without deploying the app.
 Be sure to always pass your whole environment variables list since all missing values will be unset on Heroku.
 
 ### Advanced API
 
-**deployer.checkHerokuStatus()**
+###### deployer.checkHerokuStatus()
 
 Logs current status and fail if Heroky status is not all green.
 Used to check heroku status before deploying.
 
-**deployer.packBundle()**
+###### deployer.packBundle()
 
 Copies files from `srcDir` to `${srcDir}/tmp/app-bundle` directory using `srcGlobs` options then creates a `bundle.tgz` file in `${srcDir}/tmp`.
 The copied files in `${srcDir}/tmp/app-bundle` are not deleted after this call.
 
-**deployer.clearBundleDir()**
+###### deployer.clearBundleDir()
 
 Deletes both the `${srcDir}/tmp/app-bundle` directory and its associated `${srcDir}/tmp/bundle.tgz` file.
 
-**deployer.updateBuildpacks()**
+###### deployer.updateBuildpacks()
 
 Updates the list of used buildpacks for the Heroku application using the list provided as parameter.
 
-**deployer.createSource()**
+###### deployer.createSource()
 
 Create a new source endpoint for the app on Heroku and sets `deployer.sourceBlob` to the sub `source_blob` object returned by the Heroku API.
 See https://devcenter.heroku.com/articles/platform-api-reference#source for more details.
 
-**deployer.uploadSource()**
+###### deployer.uploadSource()
 
 Upload the generated `${srcDir}/tmp/bundle.tgz` file to the Heroku source PUT URL.
 Calls to `deployer.packBundle()` and `deployer.createSource()` are required before this action.
 
-**deployer.getGitVersion()**
+###### deployer.getGitVersion()
 
 Use `srcDir` last Git commit SHA as the Heroku build version. If the `buildVersion` parameter was passed, this overrides its value.
 
-**deployer.createHerokuBuild()**
+###### deployer.createHerokuBuild()
 
 Triggers a new Heroku build using the uploaded source file and the `buildVersion` parameter if any, or the last Git SHA if `deployer.getGitVersion()` has been called. The Heroku build logs are then streamed to the console.
 
-**deployer.checkBuildStatus()**
+###### deployer.checkBuildStatus()
 
 Check the status of the build triggered by `deployer.createHerokuBuild()`. Fails if the build was not successful.
