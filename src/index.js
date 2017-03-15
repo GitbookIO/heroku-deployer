@@ -301,7 +301,7 @@ class Deployer {
             if (!this.config.useGitVersion) {
                 return;
             }
-            return this.getHeadSha();
+            return this.getGitVersion();
         })
         // Create new build with this source
         .then(() => this.createHerokuBuild())
