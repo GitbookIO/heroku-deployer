@@ -185,12 +185,12 @@ class Deployer {
             },
             body
         })
-        .then((response) => {
+        .spread((response) => {
             if (
                 !response ||
                 response.statusCode != 200
             ) {
-                throw new Error('Invalid response from heroku s3');
+                throw new Error(`Invalid response from heroku s3: ${response.statusCode}`);
             }
         });
     }
