@@ -29,7 +29,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/GitbookIO/node-heroku-deployer.git"
+    "url": "git+https://github.com/GitbookIO/heroku-deployer.git"
   },
   "contributors": [
     {
@@ -40,7 +40,7 @@
   ],
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/GitbookIO/node-heroku-deployer/issues"
+    "url": "https://github.com/GitbookIO/heroku-deployer/issues"
   },
-  "homepage": "https://github.com/GitbookIO/node-heroku-deployer#readme"
+  "homepage": "https://github.com/GitbookIO/heroku-deployer#readme"
 }
