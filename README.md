@@ -80,8 +80,7 @@ const opts = {
     force: false,
     // Used globs to create the app bundle
     // If passed empty, no files will be copied
-    // Be sure to exclude the tmp directory and sub-directories
-    srcGlobs: [ '**/*', '!tmp', '!tmp/**/*' ],
+    srcGlobs: [ '**/*' ],
     // Use srcDir last commit as build version
     useGitVersion: true
 };

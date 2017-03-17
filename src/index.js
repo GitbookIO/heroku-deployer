@@ -3,6 +3,7 @@
 const Promise = require('bluebird');
 const jetpack = require('fs-jetpack');
 const chalk = require('chalk');
+const tmp = require('tmp');
 const execPromise = Promise.promisify(require('child_process').exec, { multiArgs: true });
 const request = require('request');
 const requestPromise = Promise.promisify(request, { multiArgs: true });
@@ -33,7 +34,7 @@ class Deployer {
             buildpacks: [],
             env: {},
             force: false,
-            srcGlobs: [ '**/*', '!tmp', '!tmp/**/*' ],
+            srcGlobs: [ '**/*' ],
             useGitVersion: true
         }, configFile, opts);
 
@@ -53,7 +54,8 @@ class Deployer {
         this.srcDir = jetpack.dir(this.config.srcDir);
 
         // tmp directory to create bundle file
-        this.tmpDir = this.srcDir.dir('tmp');
+        this.tmpDirObj = tmp.dirSync();
+        this.tmpDir = jetpack.dir(this.tmpDirObj.name);
         this.bundleDir = this.tmpDir.dir('app-bundle', { empty: true });
         this.bundleTarFile = this.tmpDir.path('bundle.tgz');
 
@@ -119,11 +121,10 @@ class Deployer {
      * @return {Promise}
      */
     clearBundleDir() {
-        console.log(`Deleting temporary bundle directory ${this.bundleDir.cwd()}...`);
+        console.log(`Deleting temporary bundle directory ${this.tmpDir.name}...`);
 
         return Promise.resolve()
-        .then(() => jetpack.remove(this.bundleDir.cwd()))
-        .then(() => jetpack.remove(this.bundleTarFile));
+        .then(() => this.tmpDirObj.removeCallback());
     }
 
     /**
