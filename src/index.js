@@ -54,7 +54,7 @@ class Deployer {
         this.srcDir = jetpack.dir(this.config.srcDir);
 
         // tmp directory to create bundle file
-        this.tmpDirObj = tmp.dirSync();
+        this.tmpDirObj = tmp.dirSync({ unsafeCleanup: true });
         this.tmpDir = jetpack.dir(this.tmpDirObj.name);
         this.bundleDir = this.tmpDir.dir('app-bundle', { empty: true });
         this.bundleTarFile = this.tmpDir.path('bundle.tgz');
