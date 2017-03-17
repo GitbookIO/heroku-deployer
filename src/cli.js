@@ -1,6 +1,7 @@
 #! /usr/bin/env node
 /* eslint-disable no-console */
 
+const path = require('path');
 const program = require('commander');
 const chalk = require('chalk');
 const Deployer = require('.');
@@ -22,7 +23,7 @@ program.parse(process.argv);
 // Construct converters options
 const opts = {};
 if (program.args[0]) {
-    opts.configFile = program.args[0];
+    opts.configFile = path.resolve(process.cwd(), program.args[0]);
 }
 if (program.app) {
     opts.app = program.app;
