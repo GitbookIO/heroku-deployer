@@ -1,6 +1,6 @@
 {
   "name": "heroku-deployer",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "author": "GitBook Team <contact@gitbook.com>",
   "description": "Node.js module and CLI that makes deploying to Heroku a child's play",
   "main": "lib/index.js",
