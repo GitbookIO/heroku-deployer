@@ -253,15 +253,21 @@ class Deployer {
 
     /**
      * Check that Heroku build was successful
+     * Will continue fetching until build is finished
      * @return {Promise}
      */
     checkBuildStatus() {
-        return Promise.resolve()
+        // Take some time...
+        return Promise.delay(1000)
         // Get build from Heroku
         .then(() => this.client.get(`/apps/${this.app}/builds/${this.build.id}`))
         .then((build) => {
+            // Build did not finished yet
+            if (build.status == 'pending') {
+                return this.checkBuildStatus();
+            }
             // Build went well
-            if (build.status == 'succeeded') {
+            else if (build.status == 'succeeded') {
                 console.log(chalk.green(`${this.app} has been successfully deployed to Heroku`));
             }
             // Build failed, show details
@@ -306,8 +312,6 @@ class Deployer {
         })
         // Create new build with this source
         .then(() => this.createHerokuBuild())
-        // Take some time...
-        .delay(1000)
         // Get final build status, Fail if build has failed
         .then(() => this.checkBuildStatus())
         // Finally, clear bundle tmp directory
